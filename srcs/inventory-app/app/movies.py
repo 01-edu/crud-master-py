@@ -3,6 +3,8 @@ from flask import (
 )
 from app.extensions import db
 
+from sqlalchemy.orm.exc import NoResultFound
+
 
 class Movie(db.Model):
     __tablename__ = "movies"
@@ -89,7 +91,7 @@ def get_movies_id(id):
 
 
 @bp.route("/api/movies/<int:id>", methods=["PUT"])
-def post_movies_id(id):
+def put_movies_id(id):
     if not request.is_json:
         return make_response(
             jsonify({"error": "body must be json"}), 400
@@ -106,9 +108,9 @@ def post_movies_id(id):
         return {
             "message": f"movie {movie.id} updated"
         }
-    except Exception as inst:
+    except NoResultFound:
         return make_response(
-            jsonify({"error": f"{inst} is required"}), 400
+            jsonify(error=f"{id} is not present"), 404
         )
 
 
