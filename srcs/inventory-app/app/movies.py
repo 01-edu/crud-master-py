@@ -98,8 +98,10 @@ def post_movies_id(id):
     data = request.get_json()
     try:
         movie = Movie.query.filter_by(id=id).one()
-        movie.title = data["title"]
-        movie.description = data["description"]
+        if "title" in data.keys():
+            movie.title = data["title"]
+        if "description" in data.keys():
+            movie.description = data["description"]
         db.session.commit()
         return {
             "message": f"movie {movie.id} updated"
