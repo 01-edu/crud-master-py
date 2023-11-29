@@ -10,7 +10,7 @@ INVENTORY_APP_PORT = os.getenv("INVENTORY_APP_PORT")
 bp = Blueprint("proxy", __name__)
 
 
-@bp.route('/<path:path>', methods=["GET", "POST", "DELETE"])
+@bp.route('/<path:path>', methods=["GET", "POST", "PUT", "DELETE"])
 def gateway(path: str):
     service_mapping = {
         "movies":
