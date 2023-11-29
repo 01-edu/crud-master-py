@@ -49,9 +49,10 @@ def post_movies():
         )
         db.session.add(new_movie)
         db.session.commit()
-        return {
-            "message": f"movie {new_movie.title} inserted successfully"
-        }
+        return make_response(
+            jsonify(
+                {"message": f"movie {new_movie.title} inserted successfully"}
+            ), 201)
     except Exception as inst:
         return make_response(
             jsonify({"error": f"{inst} is required"}), 400
