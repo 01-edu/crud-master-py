@@ -10,4 +10,4 @@ psycopg2-binary==2.9.9
 SQLAlchemy==2.0.22
 typing_extensions==4.8.0
 waitress==2.1.2
-Werkzeug==3.0.3
+Werkzeug==3.0.6
