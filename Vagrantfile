@@ -34,7 +34,9 @@ inventory_app_path = vagrant_config['inventory_app_path']
 apigateway_app_path = vagrant_config['apigateway_app_path']
 
 Vagrant.configure("2") do |config|
-  config.env.enable
+  if Vagrant.has_plugin?("vagrant-dotenv")
+    config.env.enabled = true
+  end
   config.vm.box = box
   config.ssh.forward_agent = true
 
